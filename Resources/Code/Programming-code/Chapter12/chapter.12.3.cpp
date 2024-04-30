@@ -42,3 +42,58 @@ public:
     void setPositionY(int y) { positiony = y; }
     void setColor(const vec3 &col) { color = col; }
 };
+
+// Image Data Class
+class ImageData
+{
+private:
+    vector<vector<Pixel>> image;
+    int width;
+    int height;
+    string imagename;
+
+public:
+    // Constructor
+    ImageData(const string &filename)
+    {
+        ifstream file(filename);
+        if (!file)
+        {
+            cerr << "Error: Unable to open file " << filename << endl;
+            return;
+        }
+
+        string magicNumber;
+        getline(file, magicNumber);
+
+        file >> width >> height;
+
+        // Resize image vector
+        image.resize(height, vector<Pixel>(width));
+
+        // Read pixel data
+        for (int y = 0; y < height; ++y)
+        {
+            for (int x = 0; x < width; ++x)
+            {
+                double r, g, b;
+                file >> r >> g >> b;
+                vec3 color = vec3(r, g, b);
+                image[y][x] = Pixel(x, y, color);
+            }
+        }
+
+        file.close();
+    }
+
+    // Getters
+    const vector<vector<Pixel>> &getImage() const { return image; }
+    int getWidth() const { return width; }
+    int getHeight() const { return height; }
+    string getImageName() const { return imagename; }
+
+    // Setters
+    void setImage(const vector<vector<Pixel>> &img) { image = img; }
+    void setWidth(int w) { width = w; }
+    void setHeight(int h) { height = h; }
+
