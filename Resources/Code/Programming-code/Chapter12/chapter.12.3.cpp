@@ -97,3 +97,14 @@ public:
     void setWidth(int w) { width = w; }
     void setHeight(int h) { height = h; }
 
+    Pixel getPixel(int x, int y) const
+    {
+        
+        if (x >= 0 && x < width && y >= 0 && y < height)
+        {
+            // Return the pixel at the specified position
+            return image[y][x];
+     }
+    }
+}
+
