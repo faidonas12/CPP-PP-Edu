@@ -141,3 +141,14 @@ public:
    win.show();
    Fl::run();
 }
+int main()
+{
+    string filename = "Assignment4/PPM Images/world.ppm";
+    ImageData imageData(filename);
+
+ 
+
+    displaywindow(imageData.getWidth(), imageData.getHeight(), imageData.getImage());
+
+    return 0;
+}
