@@ -107,4 +107,37 @@ public:
      }
     }
 }
+} void displaywindow(int width, int height, const string &filename)
+{
+    int newwidth = width * 20 + 70;
+    int newheight = height * 20;
+   using namespace Graph_lib;  
+     Point tl(100,100);           
 
+    Simple_window win(tl,newwidth,newheight,filename);    // make a simple window
+    imag
+    for (int y = 0; y < newHeight; ++y)
+    {
+        for (int x = 0; x < newWidth; ++x)
+        {
+            Pixel curr_pixel = imageData.getPixel(x, y);
+            int red = static_cast<int>(color.x());
+            int green = static_cast<int>(color.y());
+            int blue = static_cast<int>(color.z());
+
+             int rect_width = 20;
+            int rect_height = 20;
+            int rect_x = x * rect_width;
+            int rect_y = y * rect_height;
+            Fl_Rectangle *rect = new Fl_Rectangle(rect_x, rect_y, rect_width, rect_height);
+            rect->color(FL_RGB_COLOR(red, green, blue));
+
+            // Add the rectangle to the window
+            win.attach(*rect)
+            
+        }
+    }
+   
+   win.show();
+   Fl::run();
+}
